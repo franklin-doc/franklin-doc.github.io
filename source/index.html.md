@@ -32,7 +32,7 @@ To get started with Franklin.js:
 ## 1. Install npm dependency
 
 <pre class="center-column">
-npm install --save franklin
+npm install --save franklin 
 </pre>
 
 ## 2. Add it to your code

@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;python&quot;,&quot;javascript&quot;,&quot;ruby&quot;]">
+  <body class="index" data-languages="[&quot;javascript&quot;,&quot;java&quot;,&quot;swift&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +211,9 @@
     <div class="toc-wrapper">
       <img src="images/logo.jpg" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="python">python</a>
               <a href="#" data-language-name="javascript">javascript</a>
-              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="java">java</a>
+              <a href="#" data-language-name="swift">swift</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -258,6 +257,40 @@
           <li>
             <a href="#withdrawals" class="toc-h1 toc-link" data-title="Withdrawals">Withdrawals</a>
           </li>
+          <li>
+            <a href="#api-reference" class="toc-h1 toc-link" data-title="API reference">API reference</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#key-management" class="toc-h2 toc-link" data-title="Key management">Key management</a>
+                  </li>
+                  <li>
+                    <a href="#mainchain-functions" class="toc-h2 toc-link" data-title="Mainchain functions">Mainchain functions</a>
+                  </li>
+                  <li>
+                    <a href="#sidechain-functions" class="toc-h2 toc-link" data-title="Sidechain functions">Sidechain functions</a>
+                  </li>
+                  <li>
+                    <a href="#instant-confirmation-claims" class="toc-h2 toc-link" data-title="Instant confirmation claims">Instant confirmation claims</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#raw-rest-api" class="toc-h1 toc-link" data-title="Raw REST API">Raw REST API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#testnet_config" class="toc-h2 toc-link" data-title="/testnet_config">/testnet_config</a>
+                  </li>
+                  <li>
+                    <a href="#status" class="toc-h2 toc-link" data-title="/status">/status</a>
+                  </li>
+                  <li>
+                    <a href="#submit_tx" class="toc-h2 toc-link" data-title="/submit_tx">/submit_tx</a>
+                  </li>
+                  <li>
+                    <a href="#account-id" class="toc-h2 toc-link" data-title="/account/:id">/account/:id</a>
+                  </li>
+              </ul>
+          </li>
       </ul>
         <ul class="toc-footer">
             <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
@@ -280,17 +313,49 @@ npm install --save franklin
 <pre class="center-column">
 // any provider that follows the web3 provider specification:
 const HttpProvider = require('ethjs-provider-http');
-const Franklin = require('franklin');
+const Franklin = require('franklinjs');
 const franklin = new Franklin(new HttpProvider('https://ropsten.infura.io'));
 </pre>
-<h1 id='deposits'>Deposits</h1><h1 id='checking-balance'>Checking balance</h1><h1 id='transfers'>Transfers</h1><h1 id='withdrawals'>Withdrawals</h1>
+<h1 id='deposits'>Deposits</h1><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">from</span> <span class="o">=</span> <span class="nx">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+<span class="kd">let</span> <span class="nx">amount</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">BN</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+<span class="kd">let</span> <span class="nx">tx</span> <span class="o">=</span> <span class="nx">franklin</span><span class="p">.</span><span class="nx">deposit</span><span class="p">(</span><span class="nx">from</span><span class="p">,</span> <span class="nx">amount</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">TBD</span>
+</code></pre><pre class="highlight swift tab-swift"><code><span class="kt">TBD</span>
+</code></pre><h1 id='checking-balance'>Checking balance</h1><pre class="highlight javascript tab-javascript"><code><span class="kd">let</span> <span class="nx">accountId</span> <span class="o">=</span> <span class="nx">franklin</span><span class="p">.</span><span class="nx">addressToAccountId</span><span class="p">(</span><span class="nx">accounts</span><span class="p">[</span><span class="mi">0</span><span class="p">]);</span>
+<span class="kd">let</span> <span class="nx">account</span> <span class="o">=</span> <span class="nx">franklin</span><span class="p">.</span><span class="nx">deposit</span><span class="p">(</span><span class="nx">from</span><span class="p">,</span> <span class="nx">amount</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">TBD</span>
+</code></pre><pre class="highlight swift tab-swift"><code><span class="kt">TBD</span>
+</code></pre>
+<blockquote>
+<p>This will return account information of the following form:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="err">verified</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">eth_block_height</span><span class="p">,</span><span class="w"> </span><span class="err">balance</span><span class="p">,</span><span class="w"> </span><span class="err">nonce</span><span class="p">,</span><span class="w"> </span><span class="err">pub_key</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="err">merkle_proof</span><span class="p">]</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="err">committed</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">eth_block_height</span><span class="p">,</span><span class="w"> </span><span class="err">balance</span><span class="p">,</span><span class="w"> </span><span class="err">nonce</span><span class="p">,</span><span class="w"> </span><span class="err">pub_key</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="err">merkle_proof</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="err">unverified_snark_proofs</span><span class="p">]</span><span class="w"> </span><span class="p">},</span><span class="w">
+    </span><span class="err">pending</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">balance</span><span class="p">,</span><span class="w"> </span><span class="err">nonce</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="err">list_of_pending_transactions_with_confirmations</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='transfers'>Transfers</h1><h1 id='withdrawals'>Withdrawals</h1><h1 id='api-reference'>API reference</h1><h2 id='key-management'>Key management</h2><h3 id='newkey-seed'>newKey(seed)</h3><h3 id='sign'>sign</h3><h3 id='verify'>verify</h3><h2 id='mainchain-functions'>Mainchain functions</h2>
+<ul>
+<li>addressToAccountId</li>
+<li>createDepositTx</li>
+<li>createFullWithdrawTx</li>
+</ul>
+<h2 id='sidechain-functions'>Sidechain functions</h2>
+<ul>
+<li>createTransferTx</li>
+<li>createPartialWithdrawTx</li>
+<li>signTx</li>
+<li>submitTx</li>
+<li>getAccount</li>
+<li>getNetworkStatus</li>
+</ul>
+<h2 id='instant-confirmation-claims'>Instant confirmation claims</h2><h1 id='raw-rest-api'>Raw REST API</h1><h2 id='testnet_config'>/testnet_config</h2><h2 id='status'>/status</h2><h2 id='submit_tx'>/submit_tx</h2><h2 id='account-id'>/account/:id</h2>
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="python">python</a>
                 <a href="#" data-language-name="javascript">javascript</a>
-                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="java">java</a>
+                <a href="#" data-language-name="swift">swift</a>
           </div>
       </div>
     </div>

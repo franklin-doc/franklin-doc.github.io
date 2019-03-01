@@ -2,10 +2,9 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - python
   - javascript
-  - ruby
+  - java
+  - swift
 
 toc_footers:
   - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
@@ -40,14 +39,89 @@ npm install --save franklin
 <pre class="center-column">
 // any provider that follows the web3 provider specification:
 const HttpProvider = require('ethjs-provider-http');
-const Franklin = require('franklin');
+const Franklin = require('franklinjs');
 const franklin = new Franklin(new HttpProvider('https://ropsten.infura.io'));
 </pre>
 
 # Deposits
 
+```javascript
+let from = accounts[0];
+let amount = new BN(100);
+let tx = franklin.deposit(from, amount);
+```
+
+```java
+TBD
+```
+
+```swift
+TBD
+```
+
 # Checking balance
+
+```javascript
+let accountId = franklin.addressToAccountId(accounts[0]);
+let account = franklin.deposit(from, amount);
+```
+
+```java
+TBD
+```
+
+```swift
+TBD
+```
+
+> This will return account information of the following form:
+
+```json
+{
+    verified: { eth_block_height, balance, nonce, pub_key, [merkle_proof] },
+    committed: { eth_block_height, balance, nonce, pub_key, [merkle_proof], [unverified_snark_proofs] },
+    pending: { balance, nonce, [list_of_pending_transactions_with_confirmations] }
+}
+```
 
 # Transfers
 
 # Withdrawals
+
+# API reference
+
+## Key management
+
+### newKey(seed)
+
+### sign
+
+### verify
+
+## Mainchain functions
+
+- addressToAccountId
+- createDepositTx
+- createFullWithdrawTx
+
+## Sidechain functions
+
+- createTransferTx
+- createPartialWithdrawTx
+- signTx
+- submitTx
+- getAccount
+- getNetworkStatus
+
+## Instant confirmation claims
+
+# Raw REST API
+
+## /testnet_config
+
+## /status
+
+## /submit_tx
+
+## /account/:id
+

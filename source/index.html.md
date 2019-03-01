@@ -51,15 +51,3 @@ const franklin = new Franklin(new HttpProvider('https://ropsten.infura.io'));
 # Transfers
 
 # Withdrawals
-
-# Mode
-
-# And more
-
-# And more
-
-# And more
-
-# And more
-
-# And more

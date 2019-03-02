@@ -2,17 +2,18 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
+  - curl
   - javascript
   - java
   - swift
 
 toc_footers:
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+  - Created by <a href='https://matter-labs.io'>Matter Labs</a>
 
 search: true
 ---
 
-# Getting started with Franklin
+# Introduction to Franklin
 
 ## What is Franklin Network?
 
@@ -22,7 +23,7 @@ Franklin Network is a rollup sidechain on Ethereum, secured by Zero Knowledge Pr
 
 ## What does it mean for practical applications?
 
-# Working with Franklin.js
+# Setting up Franklin.js
 
 Franklin.js is an easy-to-use, stateless js library for building applications on Franklin Network.
 
@@ -92,11 +93,9 @@ TBD
 
 ## Key management
 
-### newKey(seed)
-
-### sign
-
-### verify
+- newKey(seed)
+- sign
+- verify
 
 ## Mainchain functions
 
@@ -117,11 +116,58 @@ TBD
 
 # Raw REST API
 
-## /testnet_config
+## Testnet config
 
-## /status
+`GET /api/v0.1/testnet_config`
 
-## /submit_tx
+Returns `200 OK` result of the form:
 
-## /account/:id
+<pre class="center-column">
+{
+    contract_address: '0x6e3b4c6c6eA4292dFa5E67AC3E34738FFBa1bCFf',
+}
+</pre>
 
+## Network status
+
+`GET /api/v0.1/status`
+
+Returns `200 OK` result the form:
+
+<pre class="center-column">
+{
+    contract_address: '0x6e3b4c6c6eA4292dFa5E67AC3E34738FFBa1bCFf',
+}
+</pre>
+
+## Submit tx
+
+`POST /api/v0.1/submit_tx`
+
+<pre class="center-column">
+{ tx_hash, block_id, validator_sig }
+</pre>
+
+## Get account data
+
+`GET /api/v0.1/account/:account_id`
+
+<pre class="center-column">
+{
+    verified: { eth_block_height, balance, nonce, pub_key, [merkle_proof] },
+    committed: { eth_block_height, balance, nonce, pub_key, [merkle_proof], [unverified_snark_proofs] },
+    pending: { balance, nonce, [list_of_pending_transactions_with_confirmations] }
+}
+</pre>
+
+## Get account transactions
+
+`GET /api/v0.1/account/:account_id/transactions`
+
+<pre class="center-column">
+{
+    verified: { eth_block_height, balance, nonce, pub_key, [merkle_proof] },
+    committed: { eth_block_height, balance, nonce, pub_key, [merkle_proof], [unverified_snark_proofs] },
+    pending: { balance, nonce, [list_of_pending_transactions_with_confirmations] }
+}
+</pre>

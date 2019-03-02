@@ -201,7 +201,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;javascript&quot;,&quot;java&quot;,&quot;swift&quot;]">
+  <body class="index" data-languages="[&quot;curl&quot;,&quot;javascript&quot;,&quot;java&quot;,&quot;swift&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,6 +211,7 @@
     <div class="toc-wrapper">
       <img src="images/logo.jpg" class="logo" alt="Logo" />
         <div class="lang-selector">
+              <a href="#" data-language-name="curl">curl</a>
               <a href="#" data-language-name="javascript">javascript</a>
               <a href="#" data-language-name="java">java</a>
               <a href="#" data-language-name="swift">swift</a>
@@ -221,7 +222,7 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#getting-started-with-franklin" class="toc-h1 toc-link" data-title="Getting started with Franklin">Getting started with Franklin</a>
+            <a href="#introduction-to-franklin" class="toc-h1 toc-link" data-title="Introduction to Franklin">Introduction to Franklin</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#what-is-franklin-network" class="toc-h2 toc-link" data-title="What is Franklin Network?">What is Franklin Network?</a>
@@ -235,7 +236,7 @@
               </ul>
           </li>
           <li>
-            <a href="#working-with-franklin-js" class="toc-h1 toc-link" data-title="Working with Franklin.js">Working with Franklin.js</a>
+            <a href="#setting-up-franklin-js" class="toc-h1 toc-link" data-title="Setting up Franklin.js">Setting up Franklin.js</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#1-install-npm-dependency" class="toc-h2 toc-link" data-title="1. Install npm dependency">1. Install npm dependency</a>
@@ -278,30 +279,33 @@
             <a href="#raw-rest-api" class="toc-h1 toc-link" data-title="Raw REST API">Raw REST API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#testnet_config" class="toc-h2 toc-link" data-title="/testnet_config">/testnet_config</a>
+                    <a href="#testnet-config" class="toc-h2 toc-link" data-title="Testnet config">Testnet config</a>
                   </li>
                   <li>
-                    <a href="#status" class="toc-h2 toc-link" data-title="/status">/status</a>
+                    <a href="#network-status" class="toc-h2 toc-link" data-title="Network status">Network status</a>
                   </li>
                   <li>
-                    <a href="#submit_tx" class="toc-h2 toc-link" data-title="/submit_tx">/submit_tx</a>
+                    <a href="#submit-tx" class="toc-h2 toc-link" data-title="Submit tx">Submit tx</a>
                   </li>
                   <li>
-                    <a href="#account-id" class="toc-h2 toc-link" data-title="/account/:id">/account/:id</a>
+                    <a href="#get-account-data" class="toc-h2 toc-link" data-title="Get account data">Get account data</a>
+                  </li>
+                  <li>
+                    <a href="#get-account-transactions" class="toc-h2 toc-link" data-title="Get account transactions">Get account transactions</a>
                   </li>
               </ul>
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li>Created by <a href='https://matter-labs.io'>Matter Labs</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='getting-started-with-franklin'>Getting started with Franklin</h1><h2 id='what-is-franklin-network'>What is Franklin Network?</h2>
+        <h1 id='introduction-to-franklin'>Introduction to Franklin</h1><h2 id='what-is-franklin-network'>What is Franklin Network?</h2>
 <p>Franklin Network is a rollup sidechain on Ethereum, secured by Zero Knowledge Proofs. Currenty, it is only deployed on Rinkeby testnet. You will find a detailed technical description of rollup sidechain technology <a href="https://medium.com/matter-labs/introducing-matter-testnet-502fab5a6f17">here</a>.</p>
-<h2 id='what-is-a-sidechain'>What is a sidechain?</h2><h2 id='what-does-it-mean-for-practical-applications'>What does it mean for practical applications?</h2><h1 id='working-with-franklin-js'>Working with Franklin.js</h1>
+<h2 id='what-is-a-sidechain'>What is a sidechain?</h2><h2 id='what-does-it-mean-for-practical-applications'>What does it mean for practical applications?</h2><h1 id='setting-up-franklin-js'>Setting up Franklin.js</h1>
 <p>Franklin.js is an easy-to-use, stateless js library for building applications on Franklin Network.</p>
 
 <p>To get started with Franklin.js:</p>
@@ -334,7 +338,13 @@ const franklin = new Franklin(new HttpProvider('https://ropsten.infura.io'));
     </span><span class="err">committed</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">eth_block_height</span><span class="p">,</span><span class="w"> </span><span class="err">balance</span><span class="p">,</span><span class="w"> </span><span class="err">nonce</span><span class="p">,</span><span class="w"> </span><span class="err">pub_key</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="err">merkle_proof</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="err">unverified_snark_proofs</span><span class="p">]</span><span class="w"> </span><span class="p">},</span><span class="w">
     </span><span class="err">pending</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">balance</span><span class="p">,</span><span class="w"> </span><span class="err">nonce</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="err">list_of_pending_transactions_with_confirmations</span><span class="p">]</span><span class="w"> </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='transfers'>Transfers</h1><h1 id='withdrawals'>Withdrawals</h1><h1 id='api-reference'>API reference</h1><h2 id='key-management'>Key management</h2><h3 id='newkey-seed'>newKey(seed)</h3><h3 id='sign'>sign</h3><h3 id='verify'>verify</h3><h2 id='mainchain-functions'>Mainchain functions</h2>
+</span></code></pre><h1 id='transfers'>Transfers</h1><h1 id='withdrawals'>Withdrawals</h1><h1 id='api-reference'>API reference</h1><h2 id='key-management'>Key management</h2>
+<ul>
+<li>newKey(seed)</li>
+<li>sign</li>
+<li>verify</li>
+</ul>
+<h2 id='mainchain-functions'>Mainchain functions</h2>
 <ul>
 <li>addressToAccountId</li>
 <li>createDepositTx</li>
@@ -349,10 +359,57 @@ const franklin = new Franklin(new HttpProvider('https://ropsten.infura.io'));
 <li>getAccount</li>
 <li>getNetworkStatus</li>
 </ul>
-<h2 id='instant-confirmation-claims'>Instant confirmation claims</h2><h1 id='raw-rest-api'>Raw REST API</h1><h2 id='testnet_config'>/testnet_config</h2><h2 id='status'>/status</h2><h2 id='submit_tx'>/submit_tx</h2><h2 id='account-id'>/account/:id</h2>
+<h2 id='instant-confirmation-claims'>Instant confirmation claims</h2><h1 id='raw-rest-api'>Raw REST API</h1><h2 id='testnet-config'>Testnet config</h2>
+<p><code>GET /api/v0.1/testnet_config</code></p>
+
+<p>Returns <code>200 OK</code> result of the form:</p>
+
+<pre class="center-column">
+{
+    contract_address: '0x6e3b4c6c6eA4292dFa5E67AC3E34738FFBa1bCFf',
+}
+</pre>
+<h2 id='network-status'>Network status</h2>
+<p><code>GET /api/v0.1/status</code></p>
+
+<p>Returns <code>200 OK</code> result the form:</p>
+
+<pre class="center-column">
+{
+    contract_address: '0x6e3b4c6c6eA4292dFa5E67AC3E34738FFBa1bCFf',
+}
+</pre>
+<h2 id='submit-tx'>Submit tx</h2>
+<p><code>POST /api/v0.1/submit_tx</code></p>
+
+<pre class="center-column">
+{ tx_hash, block_id, validator_sig }
+</pre>
+<h2 id='get-account-data'>Get account data</h2>
+<p><code>GET /api/v0.1/account/:account_id</code></p>
+
+<pre class="center-column">
+{
+    verified: { eth_block_height, balance, nonce, pub_key, [merkle_proof] },
+    committed: { eth_block_height, balance, nonce, pub_key, [merkle_proof], [unverified_snark_proofs] },
+    pending: { balance, nonce, [list_of_pending_transactions_with_confirmations] }
+}
+</pre>
+<h2 id='get-account-transactions'>Get account transactions</h2>
+<p><code>GET /api/v0.1/account/:account_id/transactions</code></p>
+
+<pre class="center-column">
+{
+    verified: { eth_block_height, balance, nonce, pub_key, [merkle_proof] },
+    committed: { eth_block_height, balance, nonce, pub_key, [merkle_proof], [unverified_snark_proofs] },
+    pending: { balance, nonce, [list_of_pending_transactions_with_confirmations] }
+}
+</pre>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
+                <a href="#" data-language-name="curl">curl</a>
                 <a href="#" data-language-name="javascript">javascript</a>
                 <a href="#" data-language-name="java">java</a>
                 <a href="#" data-language-name="swift">swift</a>
